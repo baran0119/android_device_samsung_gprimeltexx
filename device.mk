@@ -343,6 +343,8 @@ PRODUCT_PACKAGES += \
 
 # Wifi configuration files
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/cred.conf:system/etc/wifi/cred.conf \
+    $(LOCAL_PATH)/wifi/olsrd.conf:system/etc/wifi/olsrd.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
