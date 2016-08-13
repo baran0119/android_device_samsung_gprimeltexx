@@ -1,6 +1,6 @@
 
 LOCAL_PATH := $(call my-dir)
-ifeq ($(TARGET_DEVICE),gprimeltetmo)
+ifeq ($(TARGET_DEVICE),gprimeltexx)
 ## Build and run dtbtool
 INSTALLED_DTIMAGE_TARGET := $(LOCAL_PATH)/dt.img
 
