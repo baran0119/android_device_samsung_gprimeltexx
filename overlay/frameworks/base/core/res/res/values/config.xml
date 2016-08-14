@@ -96,7 +96,7 @@
          The user is forbidden from setting the brightness below this level. -->
     <integer name="config_screenBrightnessSettingMinimum">5</integer>
 
-    <bool name="always_popup_usb_computer_connection_option">false</bool>
+    <add-resource name="always_popup_usb_computer_connection_option" type="bool" >false</add-resource>
 
     <!-- Set this true only if the device has separate attention and notification lights. -->
     <bool name="config_useAttentionLight">false</bool>
@@ -113,20 +113,6 @@
     
         <!-- Disable lockscreen rotation by default -->
     <bool name="config_enableLockScreenRotation">false</bool>
-
-    <!-- Flag specifying whether VoLTE is available on device -->
-    <bool name="config_device_volte_available">true</bool>
-
-    <!-- Flag specifying whether VoLTE should be available for carrier: independent of
-         carrier provisioning. If false: hard disabled. If true: then depends on carrier
-         provisioning, availability etc -->
-    <bool name="config_carrier_volte_available">true</bool>
-
-    <!-- Flag specifying whether VoLTE availability is based on provisioning -->
-    <bool name="config_carrier_volte_provisioned">false</bool>
-
-    <!-- Flag specifying whether VoLTE TTY is supported -->
-    <bool name="config_carrier_volte_tty_supported">true</bool>
 
     <!-- bool value to for enabling motion accelerometer -->
     <bool name="use_motion_accel">true</bool>
@@ -371,7 +357,6 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
 
     -->
-<integer name="config_longPressOnAppSwitchBehavior">2</integer>
 
 </resources>
 
