@@ -149,15 +149,6 @@ PRODUCT_PACKAGES += \
     init.rilcommon.rc \
     twrp.fstab
 
-#IMS SERVICE
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/ims/framework/imsmanager-internal.jar:system/framework/imsmanager-internal.jar \
-	$(LOCAL_PATH)/ims/framework/imsmanager.jar:system/framework/imsmanager.jar \
-	$(LOCAL_PATH)/ims/priv-app/ImsLogger+/ImsLogger+.apk:system/priv-app/ImsLogger+/ImsLogger+.apk \
-	$(LOCAL_PATH)/ims/priv-app/imsservice/imsservice.apk:system/priv-app/imsservice/imsservice.apk \
-	$(LOCAL_PATH)/ims/imscm.xml:system/etc/permissions/imscm.xml \
-	$(LOCAL_PATH)/ims/imsmanager_library.xml:system/etc/permissions/imsmanager_library.xml
-
 # Keylayout
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/keylayout/Synaptics_RMI4_TouchPad_Sensor.idc:system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc \
@@ -201,7 +192,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.adb.secure=0 \
     ro.debuggable=1 \
     persist.service.adb.enable=1
-#    ro.telephony.ril_class=SamsungQcomRIL
+    ro.telephony.ril_class=SamsungQcomRIL
 
 # GPS
 #PRODUCT_PACKAGES += \
