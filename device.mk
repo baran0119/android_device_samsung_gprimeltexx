@@ -133,6 +133,9 @@ PRODUCT_PACKAGES += \
     init.qcom.audio.sh \
     init.qcom.bms.sh \
     init.qcom.bt.sh \
+    init.qcom.uicc.sh \
+    init.qcom.wifi.sh \
+    init.qcom.post_boot.sh \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
     init.qcom.factory.sh \
@@ -191,7 +194,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
     ro.adb.secure=0 \
     ro.debuggable=1 \
-    persist.service.adb.enable=1
+    persist.service.adb.enable=1 \
     ro.telephony.ril_class=SamsungQcomRIL
 
 # GPS
