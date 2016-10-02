@@ -6,12 +6,17 @@ $(call inherit-product, device/samsung/gprimelte-common/device-common.mk)
 
 LOCAL_PATH := device/samsung/gprimeltexx
 
-# Common overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+	dalvik.vm.image-dex2oat-filter=everything \
+	dalvik.vm.dex2oat-filter=everything \
+	dalvik.vm.dex2oat-flags=--no-watch-dog \
+	ro.sys.fw.dex2oat_thread_count=4
 
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/dt.img:dt.img
-	
+# Boot jars
+PRODUCT_BOOT_JARS += \
+	qcom.fmradio
+
 # Configurations
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
@@ -22,10 +27,16 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml \
 	$(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
-# USB
 # Default Property Overrides
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.config.zram=true
+
+# FM
+PRODUCT_PACKAGES += \
+	FM2 \
+	FMRecord \
+	libqcomfm_jni \
+	qcom.fmradio
 
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -33,20 +44,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.product.device=gprimeltexx \
 	ro.config.zram=true
 
-# These are the hardware-specific settings that are stored in system properties.
-# Note that the only such settings should be the ones that are too low-level to
-# be reachable from resources or other mechanisms.
-	
-# Art
-PRODUCT_PROPERTY_OVERRIDES += \
-	dalvik.vm.image-dex2oat-filter=everything \
-	dalvik.vm.dex2oat-filter=everything \
-	dalvik.vm.dex2oat-flags=--no-watch-dog \
-	ro.sys.fw.dex2oat_thread_count=4
-
 # Low-RAM optimizations
 ADDITIONAL_BUILD_PROPERTIES += \
 	config.disable_atlas=true
+
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
+# Prebuilt device tree image
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/dt.img:dt.img
 
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
