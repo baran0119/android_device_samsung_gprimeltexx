@@ -25,7 +25,7 @@
     <project path="hardware/samsung" name="CyanogenMod/android_hardware_samsung" revision="cm-12.1" />
 
     <!-- Kernels -->
-    <project path="kernel/samsung/grandprime" name="vince2678/android_kernel_samsung_grandprime" revision="cm-12.1" />
+    <project path="kernel/samsung/gprimeltexx" name="baran0119/android_kernel_samsung_gprimeltexx" revision="cm-12.1" />
 
     <!-- Recovery -->
     <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" revision="android-5.1" />
