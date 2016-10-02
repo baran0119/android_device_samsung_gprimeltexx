@@ -9,7 +9,7 @@ TARGET_OTA_ASSERT_DEVICE := gprimeltexx,grandprimelte,samsung_sm_g530fz,g530fz
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8916
 
-#Init
+# Init
 TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimeltexx.c
 
 # Kernel
