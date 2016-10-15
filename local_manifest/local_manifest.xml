@@ -2,13 +2,11 @@
 <manifest>
     <!-- CM replacements -->
     <remove-project name="CyanogenMod/android_external_busybox" />
-    <!--remove-project name="CyanogenMod/android_packages_services_Telecomm" /-->
     <project path="external/busybox" name="baran0119/android_external_busybox" revision="cm-12.1" />
-    <!-- project path="packages/services/Telecomm" name="TheWhisp/android_packages_services_Telecomm" revision="cm-12.1" /-->
 
     <!-- Common repos -->
     <project path="device/qcom/common" name="CyanogenMod/android_device_qcom_common" revision="cm-12.1" />
-    <project path="device/samsung/gprimelte-common" name="baran0119/android_device_samsung_gprimelte-common" revision="cm-12.1" />
+    <project path="device/samsung/gprimelte-common" name="vince2678/android_device_samsung_gprimelte-common" revision="cm-12.1" />
     <project path="device/samsung/qcom-common" name="TheWhisp/android_device_samsung_qcom-common" revision="cm-12.1" />
     <project path="vendor/samsung/common" name="vince2678/android_vendor_samsung_common" revision="cm-12.1" />
 
@@ -21,17 +19,16 @@
 
     <!-- Hardware -->
     <project path="hardware/qcom/fm" name="CyanogenMod/android_hardware_qcom_fm" revision="cm-12.1" />
-    <!--project path="external/mm-dash" name="CyanogenMod/android_external_mm-dash" revision="cm-12.1" /-->
     <project path="hardware/samsung" name="CyanogenMod/android_hardware_samsung" revision="cm-12.1" />
 
     <!-- Kernels -->
-    <project path="kernel/samsung/gprimeltexx" name="baran0119/android_kernel_samsung_gprimeltexx" revision="cm-12.1" />
+    <project path="kernel/samsung/grandprime" name="vince2678/android_kernel_samsung_grandprime" revision="cm-12.1" />
 
     <!-- Recovery -->
     <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" revision="android-5.1" />
 
     <!-- Vendor -->
-    <project path="vendor/samsung/gprimeltexx" name="baran0119/android_vendor_samsung_gprimeltexx" revision="cm-12.1" />
+    <project path="vendor/samsung/gprimeltexx" name="vince2678/android_vendor_samsung_gprimeltexx" revision="cm-12.1" />
 
     <!-- Other -->
     <project path="external/iwconfig" name="vince2678/android_external_iwconfig" revision="cm-12.1" />
