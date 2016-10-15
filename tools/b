@@ -1,5 +1,5 @@
 DEVICE=gprimeltexx
-TYPE=eng
+TYPE=userdebug
 
 . build/envsetup.sh
 
