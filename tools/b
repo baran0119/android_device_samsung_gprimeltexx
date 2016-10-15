@@ -1,5 +1,5 @@
-DEVICE=gprimeltexx
-TYPE=userdebug
+export DEVICE=gprimeltexx
+export TYPE=userdebug
 
 . build/envsetup.sh
 
