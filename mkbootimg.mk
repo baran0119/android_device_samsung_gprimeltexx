@@ -41,7 +41,7 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 	@echo -e ${CL_CYN}"Made recovery image: $@"${CL_RST}
 else
 TWRP_VERSION := $(shell cat bootable/recovery-twrp/variables.h | grep TW_VERSION_STR | cut -d\" -f2)
-TWRP_NAME := recovery-TWRP-$(TWRP_VERSION)-grandprimeltexx-$(shell date +%Y-%m-%d-%H.%M.%S)
+TWRP_NAME := recovery-TWRP-$(TWRP_VERSION)-gprimeltexx-$(shell date +%Y-%m-%d-%H.%M.%S)
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
 		$(recovery_ramdisk) \
 		$(recovery_kernel)
