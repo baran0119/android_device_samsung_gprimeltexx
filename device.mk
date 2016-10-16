@@ -51,10 +51,6 @@ ADDITIONAL_BUILD_PROPERTIES += \
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Prebuilt Device Tree
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/dt.img:dt.img
-
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
