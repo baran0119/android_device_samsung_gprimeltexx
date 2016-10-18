@@ -38,6 +38,13 @@ PRODUCT_PACKAGES += \
 	libqcomfm_jni \
 	qcom.fmradio
 
+ADDITIONAL_BUILD_PROPERTIES += \
+	hw.fm.mode=normal
+
+# FM workaround
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/prebuilt/enableRadioFM:system/etc/init.d/enableRadioFM
+
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.product.model=SM-G530FZ \
@@ -47,6 +54,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Low-RAM optimizations
 ADDITIONAL_BUILD_PROPERTIES += \
 	config.disable_atlas=true
+
+# NFC packages
+PRODUCT_PACKAGES += \
+	NfcNci \
+	libnfc-nci
+
+# NFC prebuilt files
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
+	$(LOCAL_PATH)/nfc/libnfc-sec.conf:system/etc/libnfc-brcm.conf \
+	$(LOCAL_PATH)/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
+	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+	packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt
+
+# NFC workaround
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/prebuilt/setNFCperms:system/etc/init.d/setNFCperms
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
