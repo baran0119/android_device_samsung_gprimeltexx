@@ -6,7 +6,7 @@
 
     <!-- Common repos -->
     <project path="device/qcom/common" name="CyanogenMod/android_device_qcom_common" revision="cm-12.1" />
-    <project path="device/samsung/gprimelte-common" name="vince2678/android_device_samsung_gprimelte-common" revision="cm-12.1" />
+    <project path="device/samsung/gprimelte-common" name="baran0119/android_device_samsung_gprimelte-common" revision="cm-12.1" />
     <project path="device/samsung/qcom-common" name="TheWhisp/android_device_samsung_qcom-common" revision="cm-12.1" />
     <project path="vendor/samsung/common" name="vince2678/android_vendor_samsung_common" revision="cm-12.1" />
 
