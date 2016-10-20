@@ -12,7 +12,7 @@ TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimeltexx.c
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/samsung/gprimeltexx
-TARGET_KERNEL_CONFIG := cyanogen_gprimeltexx_defconfig_defconfig
+TARGET_KERNEL_CONFIG := cyanogen_gprimeltexx_defconfig
 
 # Misc.
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
