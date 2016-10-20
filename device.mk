@@ -336,7 +336,7 @@ PRODUCT_PACKAGES += \
 
 # ViperFX
 PRODUCT_PACKAGES += \
-	libv4a_fx_jb_NEON \
+	libv4a_fx_ics \
 	ViperFX
 
 # VoLTE calling support
