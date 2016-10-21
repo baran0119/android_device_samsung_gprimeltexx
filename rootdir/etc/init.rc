@@ -1200,31 +1200,10 @@ on property:persist.security.tlc.tui=1
   start tui
   setprop persist.security.tlc.tui 0
 
-# CS DAEMON
-service cs_service /system/bin/cs
-    class main
-    user system
-    group system
-    disabled
-
-# insthk
-service insthk /system/bin/insthk
-    class main
-    user root
-    disabled
-    oneshot
-
 on property:sys.qseecomd.enable=true
     start cs_service
     start keystore
     start insthk
-
-service mcStarter /system/bin/tbaseLoader tbase
-    class core
-    user root
-    group root
-    disabled
-    oneshot
 
 service run-mobicore /system/bin/mcDriverDaemon
     class core
