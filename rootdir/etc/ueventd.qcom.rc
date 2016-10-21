@@ -38,9 +38,6 @@
 /dev/smd0                 0660   system     system
 /dev/smd4                 0660   system     system
 /dev/smd_cxm_qmi          0640   radio      radio
-/dev/qmi 		          0640   radio      radio
-/dev/qmi0		          0640   radio      radio
-/dev/qmi1		          0640   radio      radio
 /dev/smd5                 0660   system     system
 /dev/smd6                 0660   system     system
 /dev/smd7                 0660   bluetooth  bluetooth
@@ -242,6 +239,3 @@
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/lpm_disable_freq       0660  system system
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/use_migration_notif    0660  system system
 /sys/devices/system/cpu/cpu*	cpufreq/interactive/use_sched_load         0660  system system
-
-# Add device block for FRP
-/dev/block/bootdevice/by-name/config    0660   system     system

@@ -9,13 +9,9 @@ import /init.usb.rc
 import /init.${ro.hardware}.rc
 import /init.${ro.zygote}.rc
 import /init.trace.rc
-import /init.sec_debug.rc
 import /init.carrier.rc
-import /init.rilcommon.rc
-import /init.container.rc
 # Include CM's extra init file
 import /init.cm.rc
-
 
 on early-init
     # Set init and its forked children's oom_adj.
@@ -148,7 +144,7 @@ on init
     chmod 0660 /dev/cpuctl/tasks
     write /dev/cpuctl/cpu.shares 1024
     write /dev/cpuctl/cpu.rt_runtime_us 950000
-    write /dev/cpuctl/cpu.rt_period_us 1000000  
+    write /dev/cpuctl/cpu.rt_period_us 1000000
 
     mkdir /dev/cpuctl/apps
     chown system system /dev/cpuctl/apps/tasks
@@ -336,7 +332,6 @@ on post-fs-data
     mkdir /data/misc/radio/hatp 0755 radio system
 
     # icd
-    check_icd
     chown system system /dev/icd
     chmod 0644 /dev/icd
     chown system system /dev/icdr
@@ -919,7 +914,6 @@ on charger
     copy /system/etc/battery_charging_temp.data /sys/class/power_supply/battery/batt_temp_table
 
     wait /dev/block/bootdevice/by-name/efs
-    check_fs /dev/block/bootdevice/by-name/efs ext4
     mount ext4 /dev/block/bootdevice/by-name/efs /efs nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit,errors=panic
     chown system radio /efs
     chmod 0771 /efs
@@ -1000,36 +994,9 @@ service console /system/bin/sh
     group shell log
     seclabel u:r:shell:s0
 
-## WTL_EDM_START
-## EDM AuditLog
-service edmaudit /system/bin/edmaudit
-    class main
-    user root
-
-## WTL_EDM_END
 service auditd /system/bin/auditd -k
     seclabel u:r:logd:s0
     class main
-# SEC_LINUX DRS Service
-service drsd /system/bin/drsd
-    class main
-    socket drsd stream 600 system system
-
-
-service prepare_param /system/bin/prepare_param.sh /dev/block/platform/7824900.sdhci/by-name/param
-    class core
-    user root
-    group root
-    seclabel u:r:prepare_param:s0
-    oneshot
-
-# icd
-service icd /system/bin/icd
-    class main
-    user system
-    group system log
-    onrestart check_icd
-    oneshot
 
 on property:ro.debuggable=1
     start console
@@ -1064,12 +1031,6 @@ service lmkd /system/bin/lmkd
     critical
     socket lmkd seqpacket 0660 system system
 
-service scs /system/bin/scs
-    class main
-    user system
-    group system
-    oneshot
-
 service servicemanager /system/bin/servicemanager
     class core
     user system
@@ -1094,12 +1055,6 @@ service vold /system/bin/vold
 ## Frigatebird
     socket frigate stream 0660 system system
 
-service epmd /system/bin/epmd
-    class main
-    socket epm stream 0660 system system
-    socket ppm stream 0660 system system
-    ioprio be 2
-
 service netd /system/bin/netd
     class main
     socket netd stream 0660 root system
@@ -1110,13 +1065,12 @@ service netd /system/bin/netd
 service debuggerd /system/bin/debuggerd
     class main
 
-# icd
-service icd /system/bin/icd
+service ril-daemon /system/bin/rild
     class main
-    user system
-    group system log
-    onrestart check_icd
-    oneshot
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio log qcom_diag
 
 service surfaceflinger /system/bin/surfaceflinger
     class core
@@ -1216,12 +1170,6 @@ service pre-recovery /system/bin/uncrypt
     disabled
     oneshot
 
-service SIDESYNC_service /system/bin/ss_conn_daemon
-    class main
-    socket ss_conn_daemon stream 0666 system system
-    user system
-    group inet net_raw
-
 # otp
 service otp /system/bin/otp_server
   user system
@@ -1295,10 +1243,9 @@ on property:sys.boot_completed=1
 
 # icd
 on property:init.svc.media=restarting
-    check_icd
     start icd
 
 # Activate Background Compaction
 on property:sys.sysctl.compact_memory=1
     write /proc/sys/vm/compact_memory 1
-    setprop sys.sysctl.compact_memory=0
+    setprop sys.sysctl.compact_memory 0

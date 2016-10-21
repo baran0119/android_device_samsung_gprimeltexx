@@ -150,10 +150,7 @@ PRODUCT_PACKAGES += \
 	init.qcom.fm.sh \
 	init.qcom.sh \
 	init.target.rc \
-	ueventd.qcom.rc \
-	init.rilchip.rc \
-	init.rilcommon.rc \
-	twrp.fstab
+	ueventd.qcom.rc
 
 # JARS
 PRODUCT_PACKAGES += \

@@ -564,22 +564,16 @@ service bridgemgrd /system/bin/bridgemgrd
 
 service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
     class main
-    user radio system
+    user system
     group radio system inet
     disabled
 
-service qmiproxy /system/bin/qmiproxy
+# QMUX must be in multiple groups to support external process connections
+service qmuxd /system/bin/qmuxd
     class main
-    user radio
+    user root
     group radio audio bluetooth gps qcom_diag
     disabled
-
-# QMUX must be in multiple groups to support external process connections
-#service qmuxd /system/bin/qmuxd
-#    class main
-#    user root
-#    group radio audio bluetooth gps qcom_diag
-#    disabled
 
 service netmgrd /system/bin/netmgrd
     class main
@@ -776,11 +770,6 @@ on property:sys.boot_completed=1
     start qcom-post-boot
 #    start config-zram
 
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
-
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
     user root
@@ -810,32 +799,10 @@ on property:persist.radio.multisim.config=dsda
     start ril-daemon
     start ril-daemon1
 
-#service ril-daemon2 /system/bin/rild -c 2
-#    class main
-#    socket rild2 stream 660 root radio
-#    socket rild-debug2 stream 660 radio system
-#    user root
-#    disabled
-#    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
-#service ril-daemon3 /system/bin/rild -c 3
-#    class main
-#    socket rild3 stream 660 root radio
-#    socket rild-debug3 stream 660 radio system
-#    user root
-#    disabled
-#    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
 service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
     class late_start
     user root
     disabled
-    oneshot
-
-service usb_uicc_daemon /system/bin/usb_uicc_client
-    class main
-    user system
-    group system log net_raw
     oneshot
 
 on property:sys.usb_uicc.enabled=1
@@ -950,11 +917,10 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler cfq
 
-
 # umount service
 service umount_service /system/bin/umount /preload
-     disabled
-     oneshot
+    disabled
+    oneshot
 
 # Support Preload install apks
 on property:persist.sys.storage_preload=1
@@ -963,4 +929,3 @@ on property:persist.sys.storage_preload=1
 
 on property:persist.sys.storage_preload=0
     start umount_service
-
