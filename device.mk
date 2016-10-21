@@ -5,9 +5,6 @@ $(call inherit-product-if-exists, vendor/samsung/gprimeltexx/gprimeltexx-vendor.
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# Inherit from common
-$(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
-
 include $(LOCAL_PATH)/keylayout/Layouts.mk
 
 #Android EGL implementation

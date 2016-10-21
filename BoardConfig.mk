@@ -145,7 +145,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := false
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/samsung/gprimelte-common/ril
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 TARGET_RIL_VARIANT := caf
 #override to enable audio.
 BOARD_PROVIDES_LIBRIL := false
@@ -157,7 +157,7 @@ include vendor/cm/sepolicy/sepolicy.mk
 include vendor/samsung/common/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-	device/samsung/gprimelte-common/sepolicy
+	$(LOCAL_PATH)/sepolicy
 
 BOARD_SEPOLICY_UNION += \
 	audiod.te \
