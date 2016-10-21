@@ -171,6 +171,7 @@ BOARD_SEPOLICY_UNION += \
 	kernel.te \
 	keystore.te \
 	lkmd.te \
+	macloader.te \
 	mediaserver.te \
 	mm-qcamerad.te \
 	perfd.te \
