@@ -1,4 +1,4 @@
-LOCAL_PATH := LOCAL_PATH := device/samsung/gprimeltexx
+LOCAL_PATH := device/samsung/gprimeltexx
 
 #Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/gprimeltexx/gprimeltexx-vendor.mk)
