@@ -145,7 +145,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := false
 
 # RIL
-BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
+BOARD_RIL_CLASS := ../../../device/samsung/gprimeltexx/ril
 TARGET_RIL_VARIANT := caf
 #override to enable audio.
 BOARD_PROVIDES_LIBRIL := false
@@ -157,7 +157,7 @@ include vendor/cm/sepolicy/sepolicy.mk
 include vendor/samsung/common/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-	$(LOCAL_PATH)/sepolicy
+	device/samsung/gprimeltexx/sepolicy
 
 BOARD_SEPOLICY_UNION += \
 	audiod.te \
@@ -246,12 +246,12 @@ WIFI_DRIVER_MODULE_NAME := "wlan"
 
 #make, move, symlink and strip the wlan kernel module.
 KERNEL_EXTERNAL_MODULES:
-	+$(MAKE) -C device/samsung/gprimelte-common/wlan/prima/ WLAN_ROOT=$(ANDROID_BUILD_TOP)/device/samsung/gprimelte-common/wlan/prima/ \
+	+$(MAKE) -C device/samsung/gprimeltexx/wlan/prima/ WLAN_ROOT=$(ANDROID_BUILD_TOP)/device/samsung/	gprimeltexx/wlan/prima/ \
 		KERNEL_SOURCE=$(KERNEL_OUT) ARCH="arm" \
 		CROSS_COMPILE="arm-eabi-"
 	mkdir $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/ -p
 	ln -sf /system/lib/modules/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-	mv device/samsung/gprimelte-common/wlan/prima/wlan.ko $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko
+	mv device/samsung/	gprimeltexx/wlan/prima/wlan.ko $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko
 	arm-eabi-strip --strip-debug $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko
-	+$(MAKE) -C device/samsung/gprimelte-common/wlan/prima/ clean
+	+$(MAKE) -C device/samsung/	gprimeltexx/wlan/prima/ clean
 TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES

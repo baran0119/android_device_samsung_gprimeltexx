@@ -1,11 +1,11 @@
-LOCAL_PATH := device/samsung/gprimeltexx
-
 #Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/gprimeltexx/gprimeltexx-vendor.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 include $(LOCAL_PATH)/keylayout/Layouts.mk
+
+LOCAL_PATH := device/samsung/gprimeltexx
 
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
