@@ -237,10 +237,6 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
 	packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt
 
-# NFC workaround
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/prebuilt/setNFCperms:system/etc/init.d/setNFCperms
-
 # OMX
 PRODUCT_PACKAGES += \
 	libdashplayer \
