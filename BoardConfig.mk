@@ -227,7 +227,6 @@ BOARD_VOLD_MAX_PARTITIONS := 67
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Wifi
-WLAN_CHIPSET := pronto
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
 BOARD_HAVE_SAMSUNG_WIFI := true
@@ -241,17 +240,3 @@ TARGET_USES_WCNSS_CTRL := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-WIFI_DRIVER_MODULE_PATH  := "/system/lib/modules/wlan.ko"
-WIFI_DRIVER_MODULE_NAME := "wlan"
-
-#make, move, symlink and strip the wlan kernel module.
-KERNEL_EXTERNAL_MODULES:
-	+$(MAKE) -C device/samsung/gprimeltexx/wlan/prima/ WLAN_ROOT=$(ANDROID_BUILD_TOP)/device/samsung/	gprimeltexx/wlan/prima/ \
-		KERNEL_SOURCE=$(KERNEL_OUT) ARCH="arm" \
-		CROSS_COMPILE="arm-eabi-"
-	mkdir $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/ -p
-	ln -sf /system/lib/modules/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-	mv device/samsung/	gprimeltexx/wlan/prima/wlan.ko $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko
-	arm-eabi-strip --strip-debug $(KERNEL_MODULES_OUT)/$(WLAN_CHIPSET)/$(WLAN_CHIPSET)_wlan.ko
-	+$(MAKE) -C device/samsung/	gprimeltexx/wlan/prima/ clean
-TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES
