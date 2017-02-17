@@ -1,7 +1,10 @@
-LOCAL_PATH := device/samsung/gprimeltexx
-
 # Inherit from common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
+
+# Inherit from the proprietary version
+-include vendor/samsung/gprimeltexx/BoardConfigVendor.mk
+
+LOCAL_PATH := device/samsung/gprimeltexx
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
@@ -20,6 +23,9 @@ TARGET_OTA_ASSERT_DEVICE := gprimeltexx,grandprimelte,samsung_sm_g530fz,g530fz
 # Audio
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_USES_ALSA_AUDIO := true
+TARGET_QCOM_AUDIO_VARIANT := caf
+TARGET_USES_QCOM_MM_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
@@ -28,7 +34,7 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8916
+TARGET_BOOTLOADER_BOARD_NAME := msm8916
 
 # Camera
 TARGET_PROVIDES_CAMERA_HAL := true
@@ -84,11 +90,10 @@ EXTENDED_FONT_FOOTPRINT := true
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.qcom
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_INIT_VENDOR_LIB := libinit_gprimeltexx
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_PROVIDES_INIT_RC := true
+TARGET_RECOVERY_DEVICE_MODULES := libinit_gprimeltexx
 TARGET_UNIFIED_DEVICE := true
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimeltexx.c
 
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
@@ -97,12 +102,12 @@ BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
+BOARD_RAMDISK_OFFSET := 0x02000000
 TARGET_KERNEL_SOURCE := kernel/samsung/gprimeltexx
 TARGET_KERNEL_CONFIG := cyanogen_gprimeltexx_defconfig
 
 # Lights
-TARGET_PROVIDES_LIBLIGHT := false
+TARGET_PROVIDES_LIBLIGHT := true
 
 # malloc implementation
 MALLOC_IMPL := dlmalloc
@@ -127,12 +132,11 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 CM_POWERHAL_EXTENSION := qcom
-WITH_QC_PERF := true
 
 # Qualcomm support
 TARGET_USES_QCOM_BSP := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP
-HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP -DQCOM_HARDWARE
+HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
 TARGET_USES_NEW_ION_API := true
 
@@ -142,7 +146,6 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := false
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/gprimeltexx/ril
@@ -152,44 +155,9 @@ BOARD_PROVIDES_LIBRIL := false
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-include vendor/cm/sepolicy/qcom/sepolicy.mk
-include vendor/cm/sepolicy/sepolicy.mk
-include vendor/samsung/common/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
 	device/samsung/gprimeltexx/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-	audiod.te \
-	bluetooth.te \
-	bluetooth_loader.te \
-	file.te \
-	file_contexts \
-	healthd.te \
-	init.te \
-	init_shell.te \
-	kernel.te \
-	keystore.te \
-	lkmd.te \
-	macloader.te \
-	mediaserver.te \
-	mm-qcamerad.te \
-	perfd.te \
-	property.te \
-	property_contexts \
-	qmuxd.te \
-	qseecomd.te \
-	rfs_access.te \
-	rild.te \
-	rmt_storage.te \
-	shell.te \
-	surfaceflinger.te \
-	sysinit.te \
-	system_server.te \
-	time_daemon.te \
-	ueventd.te \
-	vold.te \
-	wcnss_service.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
@@ -214,6 +182,7 @@ TW_NO_USB_STORAGE := true
 TW_TARGET_USES_QCOM_BSP := true
 TW_THEME := portrait_hdpi
 ifeq ($(TW),)
+	TARGET_PROVIDES_INIT_RC := true
 	TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
 else
 	RECOVERY_VARIANT := twrp
@@ -235,8 +204,11 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+TARGET_PROVIDES_WCNSS_QMI := true
 TARGET_USES_QCOM_WCNSS_QMI := true
 TARGET_USES_WCNSS_CTRL := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
+#WIFI_DRIVER_MODULE_NAME := "wlan"
+#WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WPA_SUPPLICANT_VERSION := VER_0_8_X

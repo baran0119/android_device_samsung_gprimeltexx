@@ -24,8 +24,8 @@ $(call inherit-product, device/samsung/gprimeltexx/device.mk)
 PRODUCT_DEVICE := gprimeltexx
 PRODUCT_NAME := full_gprimeltexx
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-G530FZ
 PRODUCT_MANUFACTURER := samsung
+PRODUCT_MODEL := SM-G530FZ
 
 # My own ID
 TARGET_UNOFFICIAL_BUILD_ID := by_baran0119_for

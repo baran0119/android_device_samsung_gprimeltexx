@@ -21,7 +21,7 @@
 *
 */
 
-#define LOG_NDEBUG 0
+//#define LOG_NDEBUG 0
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -46,7 +46,7 @@ static int camera_send_command(struct camera_device *device, int32_t cmd,
         int32_t arg1, int32_t arg2);
 
 static struct hw_module_methods_t camera_module_methods = {
-    .open = camera_device_open
+    .open = camera_device_open,
 };
 
 camera_module_t HAL_MODULE_INFO_SYM = {
@@ -61,11 +61,14 @@ camera_module_t HAL_MODULE_INFO_SYM = {
          .dso = NULL, /* remove compilation warnings */
          .reserved = {0}, /* remove compilation warnings */
     },
+
     .get_number_of_cameras = camera_get_number_of_cameras,
     .get_camera_info = camera_get_camera_info,
     .set_callbacks = NULL, /* remove compilation warnings */
     .get_vendor_tag_ops = NULL, /* remove compilation warnings */
     .open_legacy = NULL, /* remove compilation warnings */
+    .set_torch_mode = NULL, /* remove compilation warnings */
+    .init = NULL, /* remove compilation warnings */
     .reserved = {0}, /* remove compilation warnings */
 };
 
@@ -99,7 +102,7 @@ static int check_vendor_module()
 
 #define KEY_VIDEO_HFR_VALUES "video-hfr-values"
 
-const static char * iso_values[] = {"auto,ISO_HJR,ISO100,ISO200,ISO400,ISO800,ISO1600,auto"};
+const static char * iso_values[] = {"auto,ISO_HJR,ISO100,ISO200,ISO400,ISO800"};
 
 static char *camera_fixup_getparams(int id, const char *settings)
 {
@@ -130,6 +133,16 @@ static char *camera_fixup_getparams(int id, const char *settings)
 	
 	params.set("whitebalance-values", "auto,incandescent,fluorescent,daylight,cloudy-daylight");
     params.set("effect-values", "none,mono,negative,sepia");
+	
+	bool isVideo = false;
+    if (params.get(android::CameraParameters::KEY_RECORDING_HINT))
+        isVideo = !strcmp(params.get(android::CameraParameters::KEY_RECORDING_HINT), "true");
+
+    if(!isVideo){
+		params.set("auto-exposure-values", "center");
+		params.set("preview-format-values", "yuv420p");
+	}
+	
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
@@ -164,37 +177,14 @@ static char *camera_fixup_setparams(struct camera_device *device, const char *se
             params.set(android::CameraParameters::KEY_ISO_MODE, "400");
         else if (strcmp(isoMode, "ISO800") == 0)
             params.set(android::CameraParameters::KEY_ISO_MODE, "800");
-        else if (strcmp(isoMode, "ISO1600") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "1600");
     }
 	
 	// fix params here
-    int video_width, video_height;
-    params.getPreviewSize(&video_width, &video_height);
-    if(video_width*video_height <= 960*540){
-        params.set("preview-format", "yuv420p");
-    }
-	
-	params.set("scene-detect", "off");
-	
-	bool isVideo = false;
-    if (params.get(android::CameraParameters::KEY_RECORDING_HINT))
-        isVideo = !strcmp(params.get(android::CameraParameters::KEY_RECORDING_HINT), "true");
-
-    if (id == 0) {
-        int camMode;
-        if (params.get(android::CameraParameters::KEY_SAMSUNG_CAMERA_MODE)) {
-            camMode = params.getInt(android::CameraParameters::KEY_SAMSUNG_CAMERA_MODE);
-        } else {
-            camMode = -1;
-        }
-
-        if (camMode == -1) {
-            params.set(android::CameraParameters::KEY_SAMSUNG_CAMERA_MODE, "1");
-        } else {
-            params.set(android::CameraParameters::KEY_SAMSUNG_CAMERA_MODE, isVideo ? "1" : "0");
-        }
-    }
+    //int video_width, video_height;
+    //params.getPreviewSize(&video_width, &video_height);
+    //if(video_width*video_height <= 960*540){
+    //    params.set("preview-format", "yuv420p");
+    //}
 	
     android::String8 strParams = params.flatten();
 

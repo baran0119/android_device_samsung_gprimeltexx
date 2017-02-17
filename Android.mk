@@ -56,11 +56,11 @@ $(FIRMWARE_MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MODEM_SYMLINKS)
 
 # Create links for audcal data files
-#$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9306; \
-#    ln -sf /data/misc/audio/wcd9320_anc.bin \
-#    $(TARGET_OUT_ETC)/firmware/wcd9306/wcd9306_anc.bin; \
-#    ln -sf /data/misc/audio/mbhc.bin \
-#    $(TARGET_OUT_ETC)/firmware/wcd9306/wcd9306_mbhc.bin)
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9306; \
+    ln -sf /data/misc/audio/wcd9320_anc.bin \
+    $(TARGET_OUT_ETC)/firmware/wcd9306/wcd9306_anc.bin; \
+    ln -sf /data/misc/audio/mbhc.bin \
+    $(TARGET_OUT_ETC)/firmware/wcd9306/wcd9306_mbhc.bin)
 
 #Create link for wifi config
 $(shell mkdir -p $(TARGET_OUT_ETC)/wifi; \
