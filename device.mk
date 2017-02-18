@@ -54,14 +54,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
 	$(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
-	$(LOCAL_PATH)/configs/audio/Bluetooth_cal.acdb:system/etc/Bluetooth_cal.acdb \
-	$(LOCAL_PATH)/configs/audio/General_cal.acdb:system/etc/General_cal.acdb \
-	$(LOCAL_PATH)/configs/audio/Global_cal.acdb:system/etc/Global_cal.acdb \
-	$(LOCAL_PATH)/configs/audio/Handset_cal.acdb:system/etc/Handset_cal.acdb \
-	$(LOCAL_PATH)/configs/audio/Hdmi_cal.acdb:system/etc/Hdmi_cal.acdb \
-	$(LOCAL_PATH)/configs/audio/Headset_cal.acdb:system/etc/Headset_cal.acdb \
 	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-	$(LOCAL_PATH)/configs/audio/Speaker_cal.acdb:system/etc/Speaker_cal.acdb \
 	$(LOCAL_PATH)/configs/gps/flp.conf:system/etc/flp.conf \
 	$(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
 	$(LOCAL_PATH)/configs/gps/izat.conf:system/etc/izat.conf \
@@ -113,10 +106,6 @@ PRODUCT_PACKAGES += \
 
 ADDITIONAL_BUILD_PROPERTIES += \
 	hw.fm.mode=normal
-
-# FM workaround
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/prebuilt/enableRadioFM:system/etc/init.d/enableRadioFM
 
 # Display
 PRODUCT_PACKAGES += \
@@ -261,17 +250,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.ril_class=SamsungQcomRIL
 
 # Ramdisk
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
-    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh \
-    $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    $(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.sec.boot.sh:system/etc/init.sec.boot.sh \
-    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.carrier.rc \
+    init.class_main.sh \
+    init.mdm.sh \
+    init.qcom.bms.sh \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.factory.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.target.rc \
+    ueventd.qcom.rc
 
 # Ril
 PRODUCT_PACKAGES += \
