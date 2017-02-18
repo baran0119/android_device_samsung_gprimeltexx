@@ -46,6 +46,17 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 # CMHW
 BOARD_HARDWARE_CLASS +=	$(LOCAL_PATH)/cmhw
 
+# dex2oat
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    dalvik.vm.image-dex2oat-Xms=64m \
+    dalvik.vm.image-dex2oat-Xmx=64m \
+    dalvik.vm.dex2oat-Xms=64m \
+    dalvik.vm.dex2oat-Xmx=512m \
+    ro.dalvik.vm.native.bridge=0 \
+    dalvik.vm.usejit=true \
+    dalvik.vm.usejitprofiles=true \
+    dalvik.vm.appimageformat=lz4
+
 # Dex/ART
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
