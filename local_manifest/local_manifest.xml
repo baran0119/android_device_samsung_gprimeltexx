@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <!-- Common repos -->
-    <project path="device/qcom/common" name="CyanogenMod/android_device_qcom_common" revision="cm-14.1" />
-    <project path="device/samsung/qcom-common" name="CyanogenMod/android_device_samsung_qcom-common" revision="cm-14.1" />
+    <project path="device/qcom/common" name="LineageOS/android_device_qcom_common" revision="cm-14.1" />
+    <project path="device/samsung/qcom-common" name="LineageOS/android_device_samsung_qcom-common" revision="cm-14.1" />
 
     <!-- Device repos -->
     <project path="device/samsung/gprimeltexx" name="baran0119/android_device_samsung_gprimeltexx" revision="cm-14.1" >
@@ -11,14 +11,14 @@
     </project>
 
     <!-- Hardware -->
-    <project path="hardware/samsung" name="CyanogenMod/android_hardware_samsung" revision="cm-14.1" />
+    <project path="hardware/samsung" name="LineageOS/android_hardware_samsung" revision="cm-14.1" />
 
     <!-- Kernels -->
     <project path="kernel/samsung/gprimeltexx" name="baran0119/android_kernel_samsung_gprimeltexx" revision="cm-14.1" />
 
     <!-- Other -->
-    <project path="external/sony/boringssl-compat" name="CyanogenMod/android_external_sony_boringssl-compat" revision="cm-14.1" />
-    <project path="external/stlport" name="CyanogenMod/android_external_stlport" revision="cm-14.1" />
+    <project path="external/sony/boringssl-compat" name="LineageOS/android_external_sony_boringssl-compat" revision="cm-14.1" />
+    <project path="external/stlport" name="LineageOS/android_external_stlport" revision="cm-14.1" />
 
     <!-- Vendor -->
     <project path="vendor/samsung/gprimeltexx" name="baran0119/android_vendor_samsung_gprimeltexx" revision="cm-14.1" />
