@@ -129,6 +129,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	fsck.f2fs
 
+# IMS
+PRODUCT_PACKAGES += \
+    libshims_ims
+
 # JARS
 PRODUCT_PACKAGES += \
 	com.google.widevine.software.drm
