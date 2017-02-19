@@ -322,6 +322,8 @@ PRODUCT_PACKAGES += \
 
 # Common qcom
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inhert dalvik heap values from aosp
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
