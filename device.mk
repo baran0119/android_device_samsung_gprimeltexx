@@ -320,6 +320,9 @@ PRODUCT_PACKAGES += \
 	wpa_supplicant \
 	wpa_supplicant.conf
 
+# Common qcom
+$(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
+
 # Inhert dalvik heap values from aosp
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
