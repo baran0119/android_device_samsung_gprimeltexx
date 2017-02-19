@@ -48,11 +48,12 @@ BOARD_HARDWARE_CLASS +=	$(LOCAL_PATH)/cmhw
 
 # Dex/ART
 ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
+    ifeq ($(TARGET_BUILD_VARIANT),user)
+        ifeq ($(WITH_DEXPREOPT),)
+            WITH_DEXPREOPT := true
+            WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+        endif
     endif
-  endif
 endif
 
 # Display
