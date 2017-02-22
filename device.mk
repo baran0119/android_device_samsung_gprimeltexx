@@ -4,11 +4,6 @@ $(call inherit-product-if-exists, vendor/samsung/gprimeltexx/gprimeltexx-vendor.
 
 LOCAL_PATH := device/samsung/gprimeltexx
 
-#Android EGL implementation
-PRODUCT_PACKAGES += libGLES_android
-
-PRODUCT_PACKAGES += libtime_genoff
-
 # Art
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sys.fw.dex2oat_thread_count=4
