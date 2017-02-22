@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <!-- Common repos -->
-    <project path="device/qcom/common" name="LineageOS/android_device_qcom_common" revision="cm-14.1" />
-    <project path="device/samsung/qcom-common" name="LineageOS/android_device_samsung_qcom-common" revision="cm-14.1" />
+    <project path="device/qcom/common" name="CyanogenMod/android_device_qcom_common" revision="cm-13.0" />
+    <project path="device/samsung/qcom-common" name="CyanogenMod/android_device_samsung_qcom-common" revision="cm-13.0" />
 
     <!-- Device repos -->
-    <project path="device/samsung/gprimeltexx" name="baran0119/android_device_samsung_gprimeltexx" revision="cm-14.1" >
+    <project path="device/samsung/gprimeltexx" name="baran0119/android_device_samsung_gprimeltexx" revision="cm-13.0-new" >
         <copyfile src="tools/b" dest="b" />
         <copyfile src="tools/resync.sh" dest="resync.sh" />
     </project>
 
     <!-- Hardware -->
-    <project path="hardware/samsung" name="LineageOS/android_hardware_samsung" revision="cm-14.1" />
+    <project path="hardware/samsung" name="CyanogenMod/android_hardware_samsung" revision="cm-13.0" />
 
     <!-- Kernels -->
-    <project path="kernel/samsung/gprimeltexx" name="baran0119/android_kernel_samsung_gprimeltexx" revision="cm-14.1" />
+    <project path="kernel/samsung/gprimeltexx" name="baran0119/android_kernel_samsung_gprimeltexx" revision="cm-13.0" />
 
     <!-- Other -->
-    <project path="external/sony/boringssl-compat" name="LineageOS/android_external_sony_boringssl-compat" revision="cm-14.1" />
-    <project path="external/stlport" name="LineageOS/android_external_stlport" revision="cm-14.1" />
-    <project path="packages/resources/devicesettings" name="LineageOS/android_packages_resources_devicesettings" revision="cm-14.1" />
+    <project path="external/sony/boringssl-compat" name="CyanogenMod/android_external_sony_boringssl-compat" revision="cm-13.0" />
+    <project path="external/stlport" name="CyanogenMod/android_external_stlport" revision="cm-13.0" />
+    <project path="packages/resources/devicesettings" name="CyanogenMod/android_packages_resources_devicesettings" revision="cm-13.0" />
 
     <!-- Vendor -->
-    <project path="vendor/samsung/gprimeltexx" name="baran0119/android_vendor_samsung_gprimeltexx" revision="cm-14.1" />
+    <project path="vendor/samsung/gprimeltexx" name="baran0119/android_vendor_samsung_gprimeltexx" revision="cm-13.0" />
 </manifest>

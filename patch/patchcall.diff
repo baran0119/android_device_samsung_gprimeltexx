@@ -1,0 +1,20 @@
+diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java b/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java
+--- a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java	Wed Apr 20 08:50:20 2016
++++ b/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java	Thu May 12 01:31:40 2016
+@@ -153,7 +155,7 @@ public class CallAudioModeStateMachine extends StateMachine {
+                 Log.i(LOG_TAG, "Abandoning audio focus: now UNFOCUSED");
+                 mAudioManager.abandonAudioFocusForCall();
+                 mAudioManager.setMode(AudioManager.MODE_NORMAL);
+-
++                mAudioManager.setParameters("realcall=off");
+                 mMostRecentMode = AudioManager.MODE_NORMAL;
+                 mCallAudioManager.setCallAudioRouteFocusState(CallAudioRouteStateMachine.NO_FOCUS);
+             }
+@@ -305,6 +307,7 @@ public class CallAudioModeStateMachine extends StateMachine {
+                 } else if (phoneId == 1) {
+                     mAudioManager.setParameters("phone_type=cp2");
+                 }
++                mAudioManager.setParameters("realcall=on");
+             }
+ 
+             mAudioManager.setMode(AudioManager.MODE_IN_CALL);

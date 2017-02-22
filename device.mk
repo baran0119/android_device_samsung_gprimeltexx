@@ -31,8 +31,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.bt.hci_transport=smd
 
 # Browser
-PRODUCT_PACKAGES += \
-	Gello
+#PRODUCT_PACKAGES += \
+#	Gello
 
 # Boot jars
 PRODUCT_BOOT_JARS += \
@@ -47,7 +47,7 @@ PRODUCT_PACKAGES += \
 # Charger
 # Use cm images if available, aosp ones otherwise
 PRODUCT_PACKAGES += \
-    charger_res_images \
+	charger_res_images \
 	cm_charger_res_images
 
 # Configurations
@@ -73,7 +73,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
 # Connectivity Engine support
@@ -82,7 +82,7 @@ PRODUCT_PACKAGES += \
 
 # Default Property Overrides
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp \
+	persist.sys.usb.config=adb,mtp,mass_storage \
 	telephony.lteOnCdmaDevice=0 \
 	persist.eons.enabled=true \
 	persist.radio.apm_sim_not_pwdn=1 \
@@ -129,9 +129,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	fsck.f2fs
 
-# IMS
-PRODUCT_PACKAGES += \
-    libshims_ims
+# GPS HAL
+#PRODUCT_PACKAGES += \
+#    gps.msm8916
 
 # JARS
 PRODUCT_PACKAGES += \
@@ -141,9 +141,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
 	$(LOCAL_PATH)/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	$(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
-	$(LOCAL_PATH)/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
+	$(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -171,6 +169,7 @@ PRODUCT_PACKAGES += macloader
 PRODUCT_PACKAGES += \
 	Stk \
 	Stk2 \
+    busybox \
 	charon \
 	curl \
 	javax.btobex \
@@ -183,8 +182,10 @@ PRODUCT_PACKAGES += \
 
 # Misc. libs
 PRODUCT_PACKAGES += \
-	libstlport \
-	libboringssl-compat
+    libstlport \
+    libboringssl-compat \
+	libssl \
+	libcrypto
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -203,6 +204,7 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libOmxVidcCommon \
+    libqcmediaplayer \
 	libstagefrighthw
 
 # Overlay
@@ -287,7 +289,8 @@ PRODUCT_PACKAGES += \
     tinyplay \
     tinycap \
     tinymix \
-    tinypcminfo
+    tinypcminfo \
+	libtinycompress
 
 # Touch issue workaround
 PRODUCT_PACKAGES += \

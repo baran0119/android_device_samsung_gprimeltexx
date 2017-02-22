@@ -233,4 +233,3 @@ void CameraParameters::setPreviewFpsRange(int minFPS, int maxFPS) { };
     void setTouchIndexAec(int x, int y); \
     void setTouchIndexAf(int x, int y); \
     void setPreviewFpsRange(int minFPS, int maxFPS);
-

@@ -6,6 +6,7 @@
 
 LOCAL_PATH := device/samsung/gprimeltexx
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SKIP_DEFAULT_LOCALE := true
 
 # Architecture
 TARGET_CPU_CORTEX_A53 := true
@@ -15,13 +16,13 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := gprimeltexx,grandprimelte,samsung_sm_g530fz,g530fz
+TARGET_OTA_ASSERT_DEVICE := gprimelte,gprimeltexx,grandprimelte,grandprimeltexx
 
 # Audio
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
-USE_XML_AUDIO_POLICY_CONF := 1
+#USE_XML_AUDIO_POLICY_CONF := 1
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
@@ -33,15 +34,20 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 TARGET_BOOTLOADER_BOARD_NAME := msm8916
 
 # Camera
+ADDITIONAL_DEFAULT_PROPERTIES += camera2.portability.force_api=1
+TARGET_NEEDS_TEXT_RELOCATIONS := true
 TARGET_PROVIDES_CAMERA_HAL := true
 USE_DEVICE_SPECIFIC_CAMERA := true
-ADDITIONAL_DEFAULT_PROPERTIES += camera2.portability.force_api=1
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 #BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 #CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_NO_CHARGER_LED := true
+
+# CMHW
+BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw
 
 # Dex/ART
 ifeq ($(HOST_OS),linux)
@@ -59,7 +65,10 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver.so
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
-TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+#TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+
+# Encryption
+TARGET_HW_DISK_ENCRYPTION := true
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -67,6 +76,10 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
+
+# GPS
+TARGET_GPS_HAL_PATH := device/samsung/a3-common/gps
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_gprimeltexx
@@ -83,7 +96,7 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET := 0x02000000
 TARGET_KERNEL_SOURCE := kernel/samsung/gprimeltexx
-TARGET_KERNEL_CONFIG := lineageos_gprimeltexx_defconfig
+TARGET_KERNEL_CONFIG := cyanogen_gprimeltexx_defconfig
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -111,6 +124,7 @@ TARGET_POWERHAL_VARIANT := qcom
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(LOCAL_PATH)/power/power_ext.c
 
 # Qualcomm
+BOARD_GLOBAL_CFLAGS += -DQCOM_BSP
 BOARD_USES_QC_TIME_SERVICES := true
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE := true
 TARGET_USES_QCOM_BSP := true
@@ -120,16 +134,16 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/samsung/gprimeltexx/ril
-TARGET_RIL_VARIANT := caf
-BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
+#TARGET_RIL_VARIANT := caf
+#BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 USE_DEVICE_SPECIFIC_DATASERVICES := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-	device/samsung/gprimeltexx/sepolicy
+	$(LOCAL_PATH)/sepolicy
 
 # Text Relocations
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
@@ -152,6 +166,6 @@ TARGET_USES_QCOM_WCNSS_QMI := true
 TARGET_USES_WCNSS_CTRL := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
-#WIFI_DRIVER_MODULE_NAME := "wlan"
-#WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
