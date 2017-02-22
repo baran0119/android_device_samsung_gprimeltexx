@@ -19,7 +19,7 @@
     <!-- Other -->
     <project path="external/sony/boringssl-compat" name="CyanogenMod/android_external_sony_boringssl-compat" revision="cm-13.0" />
     <project path="external/stlport" name="CyanogenMod/android_external_stlport" revision="cm-13.0" />
-    <project path="packages/resources/devicesettings" name="CyanogenMod/android_packages_resources_devicesettings" revision="cm-13.0" />
+    <!-- project path="packages/resources/devicesettings" name="CyanogenMod/android_packages_resources_devicesettings" revision="cm-14.1" /-->
 
     <!-- Vendor -->
     <project path="vendor/samsung/gprimeltexx" name="baran0119/android_vendor_samsung_gprimeltexx" revision="cm-13.0" />
