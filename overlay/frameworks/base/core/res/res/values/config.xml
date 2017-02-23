@@ -322,12 +322,6 @@
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">false</bool>
 
-    <!-- Enables the feature that can show/hide the operator name in statusbar.
-        When true, the user can select to show/hide operator name through a
-        checkbox in Settings. When false, there is no option to show operator
-        name (no checkbox in Settings). -->
-    <bool name="config_showOperatorNameInStatusBar">true</bool>
-
     <!-- Whether to persist the notification for when a usb drive device is plugged in -->
     <bool name="config_persistUsbDriveNotification">true</bool>
 
